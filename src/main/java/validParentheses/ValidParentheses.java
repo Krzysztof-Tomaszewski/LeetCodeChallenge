@@ -30,9 +30,8 @@ package validParentheses;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.NoSuchElementException;
-import java.util.Stack;
 
-public class ValidParentheses {
+class ValidParentheses {
 
     public boolean isValid(String s) {
         try {
