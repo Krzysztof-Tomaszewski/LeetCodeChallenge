@@ -30,22 +30,43 @@ import java.util.Map;
 
 class LongestPalindrome {
 
-    public int longestPalindrome(String s) {
-        Map<Character, Integer> letterFrequency = new HashMap<>();
-        for(char c : s.toCharArray()) {
-            letterFrequency.put(c, letterFrequency.getOrDefault(c, 0) + 1);
+    public int longestPalindromeOld(String s) {
+        Map<Character, Integer> lettersFrequency = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            lettersFrequency.put(c, lettersFrequency.getOrDefault(c, 0) + 1);
         }
 
-        int longestPalindromeLength = letterFrequency.values().stream()
+        int longestPalindromeLength = lettersFrequency.values().stream()
                 .map(freq -> {
-                    if(freq % 2 != 0) {
+                    if (freq % 2 != 0) {
                         freq--;
                     }
                     return freq;
                 })
                 .reduce(0, Integer::sum);
 
-        if(s.length() > longestPalindromeLength) {
+        if (s.length() > longestPalindromeLength) {
+            longestPalindromeLength++;
+        }
+
+        return longestPalindromeLength;
+    }
+
+    public int longestPalindrome(String s) {
+        int[] lettersFrequency = new int[58];
+        for (char c : s.toCharArray()) {
+            lettersFrequency[c - 'A']++;
+        }
+
+        int longestPalindromeLength = 0;
+        for (int eachLetterFreq : lettersFrequency) {
+            if (eachLetterFreq % 2 != 0) {
+                eachLetterFreq--;
+            }
+            longestPalindromeLength += eachLetterFreq;
+        }
+
+        if (s.length() > longestPalindromeLength) {
             longestPalindromeLength++;
         }
 
