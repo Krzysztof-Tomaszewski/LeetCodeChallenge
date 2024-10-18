@@ -18,21 +18,19 @@ package validPalindrome;
 class ValidPalindrome {
 
     boolean isPalindrome(String str) {
-        str = str.toLowerCase();
-
-        int l = 0;
-        int r = str.length() - 1;
+        int left = 0;
+        int right = str.length() - 1;
         char[] charArray = str.toCharArray();
-        while (l < r) {
-            if(!Character.isLetterOrDigit(charArray[l])) {
-                l++;
-            } else if(!Character.isLetterOrDigit(charArray[r])) {
-                r--;
-            } else if (charArray[l] != charArray[r]) {
+        while (left < right) {
+            if (!Character.isLetterOrDigit(charArray[left])) {
+                left++;
+            } else if (!Character.isLetterOrDigit(charArray[right])) {
+                right--;
+            } else if (Character.toLowerCase(charArray[left]) != Character.toLowerCase(charArray[right])) {
                 return false;
             } else {
-                l++;
-                r--;
+                left++;
+                right--;
             }
         }
         return true;

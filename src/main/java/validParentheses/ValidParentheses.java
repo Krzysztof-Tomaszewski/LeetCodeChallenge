@@ -29,7 +29,6 @@ package validParentheses;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.NoSuchElementException;
 
 class ValidParentheses {
 
@@ -48,7 +47,7 @@ class ValidParentheses {
                 }
             }
             return bracketsStack.isEmpty();
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             return false;
         }
     }

@@ -3,10 +3,10 @@ package twoSum;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TwoSumTest {
+class TwoSumTest {
 
     @Test
-    public void testExample1() {
+    void testExample1() {
         TwoSum solution = new TwoSum();
         int[] nums = {2, 7, 11, 15};
         int target = 9;
@@ -15,7 +15,7 @@ public class TwoSumTest {
     }
 
     @Test
-    public void testExample2() {
+    void testExample2() {
         TwoSum solution = new TwoSum();
         int[] nums = {3, 2, 4};
         int target = 6;
@@ -24,7 +24,7 @@ public class TwoSumTest {
     }
 
     @Test
-    public void testExample3() {
+    void testExample3() {
         TwoSum solution = new TwoSum();
         int[] nums = {3, 3};
         int target = 6;
@@ -33,7 +33,7 @@ public class TwoSumTest {
     }
 
     @Test
-    public void testNegativeNumbers() {
+    void testNegativeNumbers() {
         TwoSum solution = new TwoSum();
         int[] nums = {-3, 4, 3, 90};
         int target = 0;
@@ -42,11 +42,11 @@ public class TwoSumTest {
     }
 
     @Test
-    public void testNoSolution() {
+    void testNoSolution() {
         TwoSum solution = new TwoSum();
         int[] nums = {1, 2, 3, 4, 5};
         int target = 10;
         int[] result = solution.twoSum(nums, target);
-        assertNull(result);
+        assertArrayEquals(new int[]{}, result);
     }
 }

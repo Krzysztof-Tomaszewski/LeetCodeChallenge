@@ -20,11 +20,12 @@ package twoSum;
 // Output: [0,1]
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
 
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> seen = new HashMap<Integer, Integer>(nums.length);
+        Map<Integer, Integer> seen = HashMap.newHashMap(nums.length);
         for (int i = 0; i < nums.length; i++) {
             int diff = target - nums[i];
             if (seen.get(diff) != null) {
@@ -33,7 +34,7 @@ public class TwoSum {
                 seen.put(nums[i], i);
             }
         }
-        return null;
+        return new int[0];
     }
 }
 
