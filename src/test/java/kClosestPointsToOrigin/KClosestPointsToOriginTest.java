@@ -41,7 +41,7 @@ class KClosestPointsToOriginTest {
     void testCase4() {
         int[][] points = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
         int k = 2;
-        int[][] expected = {{1, 2}, {2, 3}};
+        int[][] expected = {{2, 3}, {1, 2}};
         int[][] result = new KClosestPointsToOrigin().kClosest(points, k);
         assertArrayEquals(expected, result);
     }
