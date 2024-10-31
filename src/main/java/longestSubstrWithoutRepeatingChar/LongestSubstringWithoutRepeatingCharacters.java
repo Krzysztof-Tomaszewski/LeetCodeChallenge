@@ -1,6 +1,7 @@
 package longestSubstrWithoutRepeatingChar;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -31,30 +32,26 @@ import java.util.Map;
 
 class LongestSubstringWithoutRepeatingCharacters {
 
-    // Your solution goes here
+
     int lengthOfLongestSubstring(String s) {
 
         if (s == null || s.isEmpty()) {
             return 0;
         }
 
-        Map<Character, Integer> charMap = new HashMap<>();
-        int longestSubstr = 1;
-        int currentSubstr = 1;
-        charMap.put(s.charAt(0), 1);
-        for (int i = 1; i < s.length(); i++) {
-            if (charMap.getOrDefault(s.charAt(i), 0) >= 1) {
-                charMap.replaceAll(((character, integer) -> 0));
-                currentSubstr = 1;
-            } else {
-                currentSubstr++;
-                if (currentSubstr > longestSubstr) {
-                    longestSubstr = currentSubstr;
-                }
-            }
-            charMap.put(s.charAt(i), charMap.getOrDefault(s.charAt(i), 0) + 1);
+        int left = 0;
+        int maxLength = 0;
+        HashSet<Character> charSet = new HashSet<>();
 
+        for (int right = 0; right < s.length(); right++) {
+            while (charSet.contains(s.charAt(right))) {
+                charSet.remove(s.charAt(left));
+                left++;
+            }
+
+            charSet.add(s.charAt(right));
+            maxLength = Math.max(maxLength, right - left + 1);
         }
-        return longestSubstr;
+        return maxLength;
     }
 }
