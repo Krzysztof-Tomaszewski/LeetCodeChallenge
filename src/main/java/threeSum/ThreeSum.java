@@ -6,34 +6,50 @@ package threeSum;
 // Notice that the solution set must not contain duplicate triplets.
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
 class ThreeSum {
 
     public List<List<Integer>> threeSum(int[] nums) {
-        if (nums.length < 3) return Collections.emptyList();
+        if (nums.length < 3) {
+            return Collections.emptyList();
+        }
 
-        Set<List<Integer>> result = new HashSet<>();
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
 
         for (int i = 0; i < nums.length; i++) {
-            //var selectedNumber = nums[i];
-            //var targetNumber = -nums[i];
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
 
-            for (int j = 0; j < nums.length; j++) {
-                for (int k = 0; k < nums.length; k++) {
-                    if (i != j && j != k && i != k) {
-                            if (nums[j] + nums[k] + nums[i] == 0) {
-                                result.add(Stream.of(nums[i], nums[j], nums[k]).sorted(Integer::compareTo).toList());
-                            }
+            if (nums[i] > 0) {
+                break;
+            }
+
+            int j = i + 1;
+            int k = nums.length - 1;
+
+            while (j < k) {
+                int total = nums[i] + nums[j] + nums[k];
+
+                if (total > 0) {
+                    k--;
+                } else if (total < 0) {
+                    j++;
+                } else {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    j++;
+
+                    while (nums[j] == nums[j-1] && j < k) {
+                        j++;
                     }
                 }
             }
         }
-        return result.stream().toList();
+        return res;
     }
 }
 
